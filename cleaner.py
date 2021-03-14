@@ -21,7 +21,7 @@ def check_csv_correctness(df, data_dir):
 		# also check if there exists a file with that path
 		if not Path(data_dir + file_path[1] + '/' + file_path[2]).is_file():
 			print("File", file_path[2], "at index", index, "does not exist!", file=sys.stderr)
-	print("Finished csv checkup.")
+	print("--Finished csv checkup--")
 
 
 def check_duplicates(data_dir):
@@ -44,7 +44,7 @@ def check_duplicates(data_dir):
 					print("Duplicates", (directory + '/' + file_name), "and", unique[file_hash], file=sys.stderr)
 				else:
 					unique[file_hash] = (directory + '/' + file_name)
-	print("Finished looking for duplicates.")
+	print("--Finished looking for duplicates--")
 
 
 def check_label_consistency(df):
@@ -59,15 +59,20 @@ def check_label_consistency(df):
 		avg = np.average(counts)
 		wrong = labels[counts < avg]
 		print("There exist wrong labels:", wrong, file=sys.stderr)
-	print("Finished checking labels.")
+	print("--Finished checking labels--")
 
 
-# run file to perform data cleaning
+# run file with dataset directory as argument to perform data cleaning
 if __name__ == '__main__':
+	# get dataset directory name
+	if len(sys.argv) != 2:
+		print("Please provide directory name.", file=sys.stderr)
+		exit(1)
+	directory_name = sys.argv[1]
 	# read csv which has columns: Label,Filename (which is actually path)
-	csv_file = pd.read_csv('Soda_Bottles/train.csv')
-	# get Soda_Bottles directory path
-	dataset_directory = os.getcwd() + '/Soda_Bottles/'
+	csv_file = pd.read_csv(directory_name + 'train.csv')
+	# get directory path
+	dataset_directory = os.getcwd() + '/' + directory_name
 
 	check_label_consistency(csv_file)
 	check_csv_correctness(csv_file, dataset_directory)
