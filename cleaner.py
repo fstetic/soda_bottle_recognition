@@ -14,7 +14,7 @@ def check_csv_correctness(df, data_dir):
 	# for each row, i.e. pair label-file_path
 	for index, row in df.iterrows():
 		# file_path is a list ['.', 'directory', 'file_name']
-		label, file_path = row['Label'], row['Filename'].split('/')
+		label, file_path = row['Label'], row['Path'].split('/')
 		# check if the label is correct (label == directory name)
 		if label != file_path[1]:
 			print("File", file_path[2], "at index", index, "has a wrong label or is in the wrong directory!", file=sys.stderr)
@@ -69,7 +69,7 @@ if __name__ == '__main__':
 		print("Please provide directory name.", file=sys.stderr)
 		exit(1)
 	directory_name = sys.argv[1]
-	# read csv which has columns: Label,Filename (which is actually path)
+	# read csv which has columns: Label,Path
 	csv_file = pd.read_csv(directory_name + 'train.csv')
 	# get directory path
 	dataset_directory = os.getcwd() + '/' + directory_name
