@@ -70,7 +70,7 @@ if __name__ == '__main__':
 		exit(1)
 	directory_name = sys.argv[1]
 	# read csv which has columns: Label,Path
-	csv_file = pd.read_csv(directory_name + 'train.csv')
+	csv_file = pd.read_csv(directory_name + 'full.csv')
 	# get directory path
 	dataset_directory = os.getcwd() + '/' + directory_name
 
