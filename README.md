@@ -7,4 +7,7 @@ https://www.kaggle.com/deadskull7/cola-bottle-identification dataset.\
 `models.py` contains custom architecture and Tensorflow model used for 
 Transfer learning approach.\
 `metrics.py` contains functions for calculating metrics and 
-comparing two approaches.
+comparing two approaches.\
+\
+Training was done in Google Colab, notebook can be found here:
+https://colab.research.google.com/drive/1B52G_Q-JsjFwe8UoBMKCWXkXth_rdggT?usp=sharing
