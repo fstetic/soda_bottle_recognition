@@ -63,12 +63,10 @@ def tl_model_train(train_ds, test_ds, validate_ds):
 	preprocess_data = tf.keras.applications.inception_v3.preprocess_input
 
 	# build a model
-	starting_point = tf.keras.models.Sequential()
 	# input layer
 	inputs = tf.keras.Input(shape=(256, 256, 3))
-	x = starting_point(inputs)
 	# layer with inception preprocessing
-	x = preprocess_data(x)
+	x = preprocess_data(inputs)
 	# inception convolutional base
 	x = inception_model(x)
 	# fcl layer
