@@ -55,6 +55,8 @@ def tl_model_train(train_ds, test_ds, validate_ds):
 	inception_model = tf.keras.applications.InceptionV3(include_top=False, input_shape=(256, 256, 3), pooling='avg')
 	# freezing the convolutional base
 	inception_model.trainable = False
+	# define one more fully connected layer
+	fcl_layer = tf.keras.layers.Dense(512, activation='relu')
 	# define classification layer
 	prediction_layer = tf.keras.layers.Dense(8, activation='softmax')
 	# define preprocessing layer which rescales pixels to [-1,1]
@@ -68,7 +70,11 @@ def tl_model_train(train_ds, test_ds, validate_ds):
 	# layer with inception preprocessing
 	x = preprocess_data(x)
 	# inception convolutional base
-	x = inception_model(x, training=False)
+	x = inception_model(x)
+	# fcl layer
+	x = fcl_layer(x)
+	# add dropout
+	x = tf.keras.layers.Dropout(0.3)(x)
 	# classification, softmax, layer
 	outputs = prediction_layer(x)
 	# put all of that together
@@ -78,7 +84,24 @@ def tl_model_train(train_ds, test_ds, validate_ds):
 					loss='categorical_crossentropy',
 					metrics=['accuracy'])
 
-	tl_model.fit(train_ds, epochs=10, validation_data=validate_ds)
+	history = tl_model.fit(train_ds, epochs=10, validation_data=validate_ds)
+
+	print(tl_model.evaluate(test_ds))
+
+	# fine tune it
+	inception_model.trainable = True
+
+	print("Number of layers:", len(inception_model.layers))  # 312
+
+	# Freeze all the layers before the 212th layer
+	for layer in inception_model.layers[:212]:
+		layer.trainable = False
+
+	tl_model.compile(optimizer='adam',
+					loss='categorical_crossentropy',
+					metrics=['accuracy'])
+
+	tl_model.fit(train_ds, epochs=15, initial_epoch=history.epoch[-1], validation_data=validate_ds)
 
 	print(tl_model.evaluate(test_ds))
 
