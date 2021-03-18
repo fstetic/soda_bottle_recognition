@@ -9,5 +9,6 @@ Transfer learning approach.\
 `metrics.py` contains functions for calculating metrics and 
 comparing two approaches.\
 \
-Training was done in Google Colab, notebook can be found here:
+Training was done in Google Colab, notebook (which is basically all scripts 
+except `cleaner.py`) can be found here:
 https://colab.research.google.com/drive/1B52G_Q-JsjFwe8UoBMKCWXkXth_rdggT?usp=sharing
