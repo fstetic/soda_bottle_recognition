@@ -12,7 +12,8 @@ https://www.kaggle.com/deadskull7/cola-bottle-identification dataset.
 Both tasks were solved using Google Colab.
 
 Solution to the first task can be found in `models.ipynb` and also:
-https://colab.research.google.com/drive/1B52G_Q-JsjFwe8UoBMKCWXkXth_rdggT?usp=sharing
+https://colab.research.google.com/drive/1B52G_Q-JsjFwe8UoBMKCWXkXth_rdggT?usp=sharing \
+Models can be downloaded from here: https://drive.google.com/drive/folders/1hzZSgXA5dR7xHWVfuPfjHswEzszJJmmg?usp=sharing
 
 Solution to the second task can be found in `segmentation.ipynb` and also:
 https://colab.research.google.com/drive/10VWFEqTBA8EUJTcDVqVQTZuWWtgyLK_7?usp=sharing
