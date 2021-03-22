@@ -5,7 +5,7 @@ This directory contains solutions to two tasks:
 1. Generating Segmentation Grid.
 
 Both tasks use the same dataset:
-https://www.kaggle.com/deadskull7/cola-bottle-identification dataset.\
+https://www.kaggle.com/deadskull7/cola-bottle-identification. \
 Masks for segmentation were made using https://supervise.ly/.
 
 `cleaner.py` contains functions for cleaning and checking data.\
